@@ -1,70 +1,52 @@
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+
 public class Main {
-
-    static Deque<Integer> deque = new LinkedList<>();
-
-    static void offerFirst(int num) {
-        deque.offerFirst(num);
-    }
-
-    static void offerLast(int num) {
-        deque.offerLast(num);
-    }
-
-    static void pollFirst() {
-        Integer result = deque.pollFirst();
-        System.out.println((result==null)? -1 : result);
-    }
-
-    static void pollLast() {
-        Integer result = deque.pollLast();
-        System.out.println((result==null)? -1 : result);
-    }
-
-    static void size() {
-        System.out.println(deque.size());
-    }
-
-    static void isEmpty() {
-        System.out.println((deque.isEmpty() ? 1 : 0));
-    }
-
-    static void peekFirst() {
-        Integer result = deque.peekFirst();
-        System.out.println((result==null)? -1 : result);
-    }
-
-    static void peekLast() {
-        Integer result = deque.peekLast();
-        System.out.println((result==null)? -1 : result);
-    }
-
-
+    static StringBuilder sb = new StringBuilder();
+    static Deque<Integer> deque = new ArrayDeque<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        while (N > 0) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String order = st.nextToken();
-            switch (order) {
-                case "1": offerFirst(Integer.parseInt(st.nextToken()));break;
-                case "2": offerLast(Integer.parseInt(st.nextToken()));break;
-                case "3": pollFirst();break;
-                case "4": pollLast();break;
-                case "5": size();break;
-                case "6": isEmpty();break;
-                case "7": peekFirst();break;
-                case "8": peekLast();break;
+        StringTokenizer st;
+
+        int N = Integer.parseInt(br.readLine()); //명령어의 수
+
+        while(N --> 0) {
+            st = new StringTokenizer(br.readLine());
+            int order = Integer.parseInt(st.nextToken());
+
+            switch (order){
+                case 1 : //명령어 1 X : 덱의 앞에 넣는다
+                    deque.addFirst(Integer.parseInt(st.nextToken()));
+                    break;
+                case 2 : //명령어 2 X : 덱의 뒤에 넣는다
+                    deque.addLast(Integer.parseInt(st.nextToken()));
+                    break;
+                case 3 : //명령어 3 : 덱의 맨 앞의 정수를 빼서 출력한다.(없다면 -1)
+                    sb.append(deque.isEmpty()? -1 : deque.pollFirst()).append("\n");
+                    break;
+                case 4 : //명령어 4 : 덱의 맨 뒤의 정수를 빼서 출력한다.(없다면 -1)
+                    sb.append(deque.isEmpty()? -1 : deque.pollLast()).append("\n");
+                    break;
+                case 5 : //명령어 5 : 덱에 들어있는 정수의 개수 출력
+                    sb.append(deque.size()).append("\n");
+                    break;
+                case 6 : //명령어 6 : 덱이 비어있으면 1 출력 비어있지 않으면 0
+                    sb.append(deque.isEmpty()? 1 : 0).append("\n");
+                    break;
+                case 7 : //명령어 7 : 덱에 정수가 있다면 맨 앞의 정수를 출력(없다면 -1)
+                    sb.append(deque.isEmpty()? -1 :deque.peekFirst()).append("\n");
+                    break;
+                case 8 : //명령어 8 : 덱에 정수가 있다면 맨 뒤의 정수를 출력(없다면 -1)
+                    sb.append(deque.isEmpty()? -1 : deque.peekLast()).append("\n");
+                    break;
             }
-            N--;
         }
+        br.close();
+        System.out.println(sb);
     }
+
 }
