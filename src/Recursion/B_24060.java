@@ -14,7 +14,7 @@ public class B_24060 {
     private static void merge_sort(int[] arr, int left, int right) {
         if(count > K) return;
         if (left < right) {
-            int mid = (left + right) / 2; //배열의 중앙구하기
+            int mid = (left + right) / 2; //배열의 중앙구하기s
             merge_sort(arr, left, mid); //전반부 정렬
             merge_sort(arr, mid + 1, right); //후반부 정렬
             merge(arr, left, mid, right); //병합작업
