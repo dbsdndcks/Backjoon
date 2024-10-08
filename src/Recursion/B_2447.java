@@ -10,14 +10,14 @@ public class B_2447 {
         int N = Integer.parseInt(br.readLine());
         int powNum = (int)Math.pow(3, N);
 
-        String[][] star = new String[N][N];
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        String[][] star = new String[powNum][powNum];
+        for (int i = 0; i < powNum; i++) {
+            for (int j = 0; j < powNum; j++) {
                 star[i][j] = "*";
             }
         }
 
-        removeStar(star);
+        removeStar(star,0,powNum);
 
     }
 
