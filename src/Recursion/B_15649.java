@@ -20,12 +20,11 @@ public class B_15649 {
             arr[i] = i+1;
         }
 
-        sequence(arr, M);
     }
-
+/*
     private static void sequence(int[] arr, int m) {
         while () {
 
         }
-    }
+    }*/
 }
