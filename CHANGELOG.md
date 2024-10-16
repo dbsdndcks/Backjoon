@@ -1,3 +1,5 @@
+- feat(directive): ng:disabled,
+- Create CHANGELOG.md
 - Create B_15649.java
 - Update B_11729.java
 - 백준 원판 문제 재귀
