@@ -1,13 +1,21 @@
-import java.io.*;
-import java.util.StringTokenizer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
 public class Main {
+
     static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-    static boolean[]  visited;
+    static boolean[] visited;
     static int[] result;
     static int order = 1;
-    public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -16,13 +24,13 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         int R = Integer.parseInt(st.nextToken());
 
-        visited = new boolean[N+1];
-        result = new int[N+1];
+        visited = new boolean[N + 1];
+        result = new int[N + 1];
         for (int i = 0; i <= N; i++) {
             graph.add(new ArrayList<Integer>());
         }
 
-        for(int i=1; i<=M; i++){
+        for (int i = 1; i <= M; i++) {
             st = new StringTokenizer(br.readLine());
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
@@ -32,7 +40,7 @@ public class Main {
         }
 
         for (int i = 1; i <= N; i++) {
-            Collections.sort(graph.get(i));
+            graph.get(i).sort(Comparator.reverseOrder());
         }
 
         dfs(R);
@@ -44,15 +52,14 @@ public class Main {
         bw.flush();
         bw.close();
         br.close();
-
     }
 
-    public static void dfs(int node) {
+    public static void dfs(int node){
         visited[node] = true;
         result[node] = order++;
-        for (int neighborNode : graph.get(node)) {
-            if (!visited[neighborNode]) {
-                dfs(neighborNode);
+        for (int neighborhood : graph.get(node)) {
+            if (!visited[neighborhood]) {
+                dfs(neighborhood);
             }
         }
     }
