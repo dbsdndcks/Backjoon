@@ -27,6 +27,7 @@ public class B_24444 {
         int M = Integer.parseInt(st.nextToken());
         int R = Integer.parseInt(st.nextToken());
 
+        //초기화
         visited = new boolean[N + 1];
         result = new int[N + 1];
         for (int i = 0; i <= N; i++) {
@@ -42,12 +43,15 @@ public class B_24444 {
             graph.get(v).add(u);
         }
 
+        //graph 내부 오름차순 정렬
+        //예 : [4,1],[3,1] -> [1,4],[1,3]
         for (int i = 1; i <= N; i++) {
             Collections.sort(graph.get(i));
         }
 
         bfs(R);
 
+        //결과출력
         for (int i = 1; i <= N; i++) {
             bw.write(result[i] + "\n");
         }
@@ -57,6 +61,7 @@ public class B_24444 {
         br.close();
     }
 
+    //bfs 구현
     public static void bfs(int node) {
         queue.offer(node);
         visited[node] = true;
