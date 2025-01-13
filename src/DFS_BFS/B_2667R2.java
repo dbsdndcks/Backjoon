@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class B_2667_v2 {
+public class B_2667R2 {
 
     static boolean[][] visited;
     static boolean[][] complex;
