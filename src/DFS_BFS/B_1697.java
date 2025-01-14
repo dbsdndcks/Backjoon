@@ -9,41 +9,45 @@ import java.util.StringTokenizer;
 
 public class B_1697 {
 
-    static int[] walk = {-1, 1};
-    static int tp = 2;
-    static int count = 0;
+    static int[] visited = new int[100001];
+    static int N;
+    static int K;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
 
+        int result = bfs(N);
+        System.out.println(result);
 
+    }
+
+    private static int bfs(int node) {
         Queue<Integer> q = new LinkedList<>();
-        q.offer(N);
-        int nowNum;
-        while (nowNum != K) {
+        q.offer(node);
+        int nowNum = 0;
+        visited[node] = 1;
+
+        while (!q.isEmpty()) {
             nowNum = q.poll();
 
-            if (nowNum * tp != K) {
-                for (int i = 0; i < 2; i++) {
-                    if (nowNum + walk[i] == K) {
-                        count++;
-                        nowNum++;
-                    }
-                }//for
-            }//if
-
-            if (nowNum * tp == K) {
-                count++;
-                nowNum *= tp;
+            if (nowNum == K) {
+                return visited[nowNum]-1;
             }
-
-
-        }// while
-
-        System.out.println(count);
-
-
+            if (nowNum - 1 >= 0 && visited[nowNum-1] == 0) {
+                visited[nowNum-1] = visited[nowNum] + 1;
+                q.offer(nowNum - 1);
+            }
+            if (nowNum + 1 <= 100000 && visited[nowNum + 1] == 0) {
+                visited[nowNum+1] = visited[nowNum] + 1;
+                q.offer(nowNum + 1);
+            }
+            if (nowNum * 2 <= 100000 && visited[nowNum * 2] == 0) {
+                visited[nowNum * 2] = visited[nowNum] + 1;
+                q.offer(nowNum * 2);
+            }
+        }
+        return -1;
     }
 }
