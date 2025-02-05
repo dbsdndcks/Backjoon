@@ -46,7 +46,6 @@ public class B_7576R {
 
         while (!q.isEmpty()) {
             int size = q.size();
-            day++; // 하루 증가
 
             for (int i = 0; i < size; i++) {
                 int[] now = q.poll();
@@ -63,6 +62,8 @@ public class B_7576R {
                     }
                 }
             }
+
+            day++; // 하루 증가
         }
 
         // BFS가 끝난 후, 익지 않은 토마토가 남아 있는지 확인
