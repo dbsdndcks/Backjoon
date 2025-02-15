@@ -2,8 +2,7 @@ package Backtracking;
 
 import java.util.Scanner;
 
-public class B_15650 {
-
+public class B_15651 {
     public static int[] arr;
     public static int N, M;
 
