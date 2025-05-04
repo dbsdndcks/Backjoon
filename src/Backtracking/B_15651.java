@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class B_15651 {
     public static int[] arr;
     public static int N, M;
-
+    public static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
@@ -15,26 +15,22 @@ public class B_15651 {
 
         arr = new int[M];
 
-        dfs(1, 0);
-
+        dfs( 0);
+        System.out.println(sb);
     }
 
-    public static void dfs(int at, int depth) {
+    public static void dfs(int depth) {
 
         if (depth == M) {
             for (int val : arr) {
-                System.out.print(val + " ");
+                sb.append(val + " ");
             }
-            System.out.println();
+            sb.append("\n");
             return;
         }
-
-        for (int i = at; i <= N; i++) {
-
-            arr[depth] = i;
-            dfs(i + 1, depth + 1);
-
+        for (int i = 0; i < N; i++) {
+            arr[depth] = i+1;
+            dfs(depth + 1);
         }
     }
-
 }
